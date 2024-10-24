@@ -14,8 +14,9 @@ This is a list of useful **WordPress** and **FacetWP** code snippets and functio
 
 - [Hide Count from all facets dropdown UI](#hide-count-from-all-facets-dropdown-ui)
 - [Hide Count from specific facets dropdown UI](#hide-count-from-specific-facets-dropdown-ui)
-- [Add a CSS class to the Sort facet’s "select" element](#add-a-css-class-to-the-sort-facets-select-element)
+- [Add a CSS class to the Sort facet's "select" element](#add-a-css-class-to-the-sort-facets-select-element)
 - [Disable parents with children in fselect](#disable-parents-with-children-in-fselect)
+- [Add label or aria-label to fSelect facets search input field](Add-label-or-aria-label-to-fSelect-facets-search-input-field)
 
 ---
 
@@ -52,7 +53,7 @@ add_filter( 'facetwp_facet_dropdown_show_counts', function( $return, $params ) {
 
 ```php
 /**
- * If you want to hide counts from specific facets with a dropdown UI, then use this, add the following to your theme’s functions.php:
+ * Add a CSS class to the Sort facet’s "select" element
  */
 
 // With JS:
@@ -74,25 +75,40 @@ add_filter( 'facetwp_facet_html', function( $output, $params ) {
 }, 10, 2 );
 ```
 
-### Disable parents with children in fselect
+### Add label or aria-label to fSelect facets search input field
 
 ```php
 /**
- * If you want to hide counts from specific facets with a dropdown UI, then use this, add the following to your theme’s functions.php:
+ * Add label or aria-label to fSelect facets search input field
  */
-add_action( 'facetwp_scripts', function() { ?>
+add_action('facetwp_scripts', function () {
+?>
     <script>
-    (function($) {
         FWP.hooks.addAction('facetwp/loaded', function() {
-            $( '.facetwp-facet-my_categories .fs-option.d1').each(function() {
-                var el = $(this);
-                var parent = el.prev('.fs-option.d0');
-                parent.addClass( 'disabled' );
+
+            /** adds aria-label to input */
+            fUtil('.facetwp-type-fselect .fs-search input').each(function() {
+                fUtil(this).attr('aria-label', 'this is the label');
             });
-        }, 100 );
-    })(jQuery);
+
+            /** prepends <label> and text to input  */
+
+            // element that will be wrapped
+            var el = document.querySelector('.facetwp-type-fselect .fs-search input');
+
+            // create wrapper container
+            var wrapper = document.createElement('label');
+
+            // insert wrapper before el in the DOM tree
+            el.parentNode.insertBefore(wrapper, el);
+
+            // add label text
+            wrapper.textContent = "This is the label";
+
+        }, 1000);
     </script>
-<?php }, 100 );
+<?php
+}, 100);
 ```
 
 ---
