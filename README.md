@@ -15,6 +15,7 @@ This is a list of useful **WordPress** and **FacetWP** code snippets and functio
 - [Hide Count from all facets dropdown UI](#hide-count-from-all-facets-dropdown-ui)
 - [Hide Count from specific facets dropdown UI](#hide-count-from-specific-facets-dropdown-ui)
 - [Add a CSS class to the Sort facet’s "select" element](#add-a-css-class-to-the-sort-facets-select-element)
+- [Disable parents with children in fselect](#disable-parents-with-children-in-fselect)
 
 ---
 
@@ -64,7 +65,6 @@ add_action( 'facetwp_scripts', function() {
     </script>
 <?php
 }, 100 );
-
 // Or, with PHP:
 add_filter( 'facetwp_facet_html', function( $output, $params ) {
   if ( 'sort' == $params['facet']['type'] ) { //
@@ -72,7 +72,27 @@ add_filter( 'facetwp_facet_html', function( $output, $params ) {
   }
   return $output;
 }, 10, 2 );
+```
 
+### Disable parents with children in fselect
+
+```php
+/**
+ * If you want to hide counts from specific facets with a dropdown UI, then use this, add the following to your theme’s functions.php:
+ */
+add_action( 'facetwp_scripts', function() { ?>
+    <script>
+    (function($) {
+        FWP.hooks.addAction('facetwp/loaded', function() {
+            $( '.facetwp-facet-my_categories .fs-option.d1').each(function() {
+                var el = $(this);
+                var parent = el.prev('.fs-option.d0');
+                parent.addClass( 'disabled' );
+            });
+        }, 100 );
+    })(jQuery);
+    </script>
+<?php }, 100 );
 ```
 
 ---
