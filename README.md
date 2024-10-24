@@ -16,7 +16,7 @@ This is a list of useful **WordPress** and **FacetWP** code snippets and functio
 - [Hide Count from specific facets dropdown UI](#hide-count-from-specific-facets-dropdown-ui)
 - [Add a CSS class to the Sort facet's "select" element](#add-a-css-class-to-the-sort-facets-select-element)
 - [Disable parents with children in fselect](#disable-parents-with-children-in-fselect)
-- [Add label or aria-label to fSelect facets search input field](Add-label-or-aria-label-to-fSelect-facets-search-input-field)
+- [Add label or aria-label to fSelect facets search input field](#Add-label-or-aria-label-to-fSelect-facets-search-input-field)
 
 ---
 
