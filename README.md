@@ -14,6 +14,7 @@ This is a list of useful **WordPress** and **FacetWP** code snippets and functio
 
 - [Hide Count from all facets dropdown UI](#hide-count-from-all-facets-dropdown-ui)
 - [Hide Count from specific facets dropdown UI](#hide-count-from-specific-facets-dropdown-ui)
+- [Add a CSS class to the Sort facet’s "select" element](#add-a-css-class-to-the-sort-facets-select-element)
 
 ---
 
@@ -42,6 +43,34 @@ add_filter( 'facetwp_facet_dropdown_show_counts', function( $return, $params ) {
     $return = false;
   }
   return $return;
+}, 10, 2 );
+
+```
+
+### Add a CSS class to the Sort facet’s "select" element
+
+```php
+/**
+ * If you want to hide counts from specific facets with a dropdown UI, then use this, add the following to your theme’s functions.php:
+ */
+
+// With JS:
+add_action( 'facetwp_scripts', function() {
+```
+    <script>
+      document.addEventListener('facetwp-loaded', function() {
+        fUtil('.facetwp-type-sort select').addClass('form-select');
+      });
+    </script>
+```php
+}, 100 );
+
+// Or, with PHP:
+add_filter( 'facetwp_facet_html', function( $output, $params ) {
+  if ( 'sort' == $params['facet']['type'] ) { //
+    $output = str_replace( 'select', 'select class="form-select"', $output );
+  }
+  return $output;
 }, 10, 2 );
 
 ```
