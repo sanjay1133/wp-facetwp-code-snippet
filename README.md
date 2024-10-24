@@ -6,7 +6,7 @@
 
 ## Overview
 
-This is a list of useful **WordPress** and **FacetWP** code snippets and functions that I often reference to enhance or clean up my sites. 
+This repository contains a collection of code snippets and functions that can be used to enhance or streamline your **WordPress** and **FacetWP** projects. 
 
 **Note:** Please be careful and make backups!
 
