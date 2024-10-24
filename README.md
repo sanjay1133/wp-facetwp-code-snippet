@@ -12,19 +12,21 @@ This is a list of useful **WordPress** and **FacetWP** code snippets and functio
 
 ## FacetWP
 
-- [Hide Count from all facets of a type that use a dropdown UI](#send-entry-data-to-third-party)
+- [Hide Count from all facets dropdown UI](#hide-count-from-all-facets-dropdown-ui)
 
 ---
 
 ## FacetWP
 
-### Hide Count from all facets of a type that use a dropdown UI
+### Hide Count from all facets dropdown UI
 
 ```php
 /**
  * To hide counts from all facets of a type that use a dropdown UI (all Dropdown facets, fSelect facets, Hierarchy Select facets, and Range List facets (in dropdown or fSelect UI mode)), add the following to your theme’s functions.php:
  */
+
 add_filter( 'facetwp_facet_dropdown_show_counts', '__return_false' );
+
 ```
 
 ---
