@@ -13,6 +13,7 @@ This is a list of useful **WordPress** and **FacetWP** code snippets and functio
 ## FacetWP
 
 - [Hide Count from all facets dropdown UI](#hide-count-from-all-facets-dropdown-ui)
+- [Hide Count from specific facets dropdown UI](#hide-count-from-specific-facets-dropdown-ui)
 
 ---
 
@@ -26,6 +27,22 @@ This is a list of useful **WordPress** and **FacetWP** code snippets and functio
  */
 
 add_filter( 'facetwp_facet_dropdown_show_counts', '__return_false' );
+
+```
+
+### Hide Count from specific facets dropdown UI
+
+```php
+/**
+ * If you want to hide counts from specific facets with a dropdown UI, then use this, add the following to your theme’s functions.php:
+ */
+
+add_filter( 'facetwp_facet_dropdown_show_counts', function( $return, $params ) {
+  if ( 'your_facet_name' == $params['facet']['name'] ) {
+    $return = false;
+  }
+  return $return;
+}, 10, 2 );
 
 ```
 
