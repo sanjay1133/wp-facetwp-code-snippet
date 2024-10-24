@@ -56,13 +56,13 @@ add_filter( 'facetwp_facet_dropdown_show_counts', function( $return, $params ) {
 
 // With JS:
 add_action( 'facetwp_scripts', function() {
-```
+?>
     <script>
       document.addEventListener('facetwp-loaded', function() {
         fUtil('.facetwp-type-sort select').addClass('form-select');
       });
     </script>
-```php
+<?php
 }, 100 );
 
 // Or, with PHP:
